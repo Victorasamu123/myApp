@@ -2,3 +2,17 @@ React Native lesson
 
 splash screen
 marginHorizntal-auto-to center
+
+
+{
+  return <MaterialIcons color={color} size={size} name={MAPPING[name]} style={style} />;
+}
+
+
+ <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    </ThemeProvider>
+
+using list views
+
+flatlist
+sectionlist
