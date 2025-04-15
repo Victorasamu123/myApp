@@ -1,0 +1,4 @@
+React Native lesson
+
+splash screen
+marginHorizntal-auto-to center
