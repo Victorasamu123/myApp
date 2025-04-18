@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, Appearance, Platform, SafeAreaView, ScrollView, FlatList, View, Text, Image} from "react-native";
 import { Colors } from "@/constants/Colors";
 import { MenuItems } from "@/constants/MenuItems";
@@ -13,24 +14,26 @@ export default function MenuScreen (){
 
    const Container = Platform.OS === 'web' ? ScrollView : SafeAreaView;
 
-   const seperatorComponent = <View style={styles.seperator}></View>
-   const headerComp = <Text>Top of Lists</Text>
-   const footerComp = <Text>Buttom of Lists</Text>
+   const seperatorComponent = (): React.ReactElement => ( <View style={styles.seperator}></View>)
+  //  const headerComp = <Text>Top of Lists</Text>
+   const footerComp = <Text style={{color:theme.text}}>End of Menu</Text>
    return (
     <Container>
+
         <FlatList data={MenuItems} keyExtractor={(item)=>item.id.toString()} showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.contentContainer}
         ItemSeparatorComponent={seperatorComponent}
-        ListHeaderComponent={headerComp}
+        // ListHeaderComponent={headerComp}
         ListFooterComponent={footerComp}
         ListFooterComponentStyle={styles.footerComp}
+        ListEmptyComponent={<Text>No Items</Text>}
          renderItem={({item})=>(
-           <View>
-            <View>
-                <Text>{item.title}</Text>
-                <Text>{item.description}</Text>
+           <View style={styles.row}>
+            <View style={styles.menuTextRow}>
+                <Text style={[styles.menuItemTitle,styles.menuItemText]}>{item.title}</Text>
+                <Text style={styles.menuItemText}>{item.description}</Text>
             </View>
-            <Image source={MenuImages[item.id-1]}/>
+            <Image source={MenuImages[item.id-1]} style={styles.menuImage}/>
            </View>
         )}/>
     </Container>
@@ -54,7 +57,39 @@ function createStyles (theme: { text: string; background: string; backgroundHead
         marginBottom: 10,
       },
       footerComp:{
-        marginHorizontal : "auto"
+        marginHorizontal : "auto",
+        
+      },
+      row:{
+        flexDirection:'row',
+        width: '100%',
+        maxWidth: 600,
+        height: 100,
+        marginBottom:10,
+        borderStyle: 'solid',
+        borderColor: colorScheme === 'dark'? 'papayawhip' : '#000',
+        borderWidth: 1,
+        borderRadius:20,
+        overflow: 'hidden',
+        marginHorizontal:'auto',
+      },
+      menuTextRow:{
+        width: '65%',
+        paddingTop :10,
+        paddingLeft:10,
+        paddingRight : 10,
+        flexGrow:1,
+      },
+      menuItemTitle:{
+        fontSize:18,
+        textDecorationLine:'underline'
+      },
+      menuItemText:{
+        color:theme.text
+      },
+      menuImage:{
+        width:100,
+        height:100,
       }
    })
 

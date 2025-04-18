@@ -11,6 +11,11 @@ const app = () => {
 
       <Link href='/menu' style={{marginHorizontal: "auto"}} asChild>
       <Pressable style={styles.button}>
+        <Text style={styles.buttonText}>Our Menu</Text>
+      </Pressable>
+      </Link>
+      <Link href='/contact' style={{marginHorizontal: "auto"}} asChild>
+      <Pressable style={styles.button}>
         <Text style={styles.buttonText}>Contact Us</Text>
       </Pressable>
       </Link>
@@ -48,6 +53,8 @@ const styles = StyleSheet.create({
     backgroundColor : 'rgba(0,0,0,0.5)',
     padding: 6,
     justifyContent: 'center',
+    marginBottom:50,
+    width:150,
   },
   buttonText:{
     color:'white',
